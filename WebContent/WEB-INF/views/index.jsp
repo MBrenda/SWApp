@@ -11,7 +11,7 @@
 <body>
 		<h1>Index</h1>
 		
-		
+<!-- 	concatenate urls using jstl	tags -->
 		<a href='<c:url value="/admin" />'> Gestionar Administradores</a>
 		<br/>
 		<a href='<c:url value="/about" />'> Acerca de</a><br>

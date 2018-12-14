@@ -14,13 +14,11 @@
 		id="dataSource" expected-type="javax.sql.DataSource">
 	</jee:jndi-lookup>
 
-	<!-- aceptar anotaciones -->
+	<!-- accept annotations -->
 	<context:annotation-config />
 	<context:component-scan base-package="um.dao"></context:component-scan>
 
-	<!-- fabrica de sesiones hibernate, con propiedades. la primera hace refe 
-		al data source para que se conecte a la bd que indique arriba la segunda 
-		hace referencia a las clases que van a tener el mapping relacional de objetos(pojo) -->
+	<!-- hibernate session factory with bd and orm properties -->
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -29,22 +27,24 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<!-- para ver las sentencias que va ejecutando -->
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-
 	</bean>
+
+	<!-- translate exceptions hibernate into spring -->
 	<bean id="exceptionTranslator"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
 	</bean>
 
+	<!-- enable transactions -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
+	<!-- enable transactions annotations -->
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
 </beans>

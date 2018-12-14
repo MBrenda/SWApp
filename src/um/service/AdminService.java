@@ -13,14 +13,13 @@ import um.pojo.Admin;
 @Service
 public class AdminService {
 
-	// necesito una instancia de adminDao y ya dsps pongo todos los metodos que
-	// quiera para operar con la bd a traves del dao
+
 	@Autowired
 	private AdminDao adminDao;
 
+	//this method save an admin in db
 	public void save(Admin admin) {
 
-		// asi inserto la fecha automaticamente
 		admin.setFechaCreacion(new Timestamp(new Date().getTime()));
 
 		adminDao.save(admin);

@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 
 
-<!-- esta linea me importa el recurso estatico -->
+<!-- jQuery.js this is an static resource -->
 <script type="text/javascript" src='<c:url value="/res/js/jquery.js"/>'></script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
@@ -18,20 +18,17 @@
 			return confirm("Si elimina este elemento no se podrá recuperar. ¿Continuar? ");
 		});
 	}); 
-// 	a los elementos que tengan la clase confirm en su elemento click ejecuta esa funcion, que muestra un cuadro de confirmacion
-// que si le das si lo ejecuta si no no
 </script>
 
 </head>
 <body>
 	<h1>Gestionar Administradores</h1>
 		
-<!-- 	SF es un spring form commandName va a tener una nueva instancia del pojo -->
-<%-- ${pageContext.request.contextPath} es el equivalente a http://localhost:8080/--%>
-
+<!-- 	spring form works with an instance of my pojo commandName="admin" -->
+<%-- ${pageContext.request.contextPath} equals http://localhost:8080/--%>
 	<sf:form action="${pageContext.request.contextPath}/admin/save" method="post" commandName="admin">
 		<table>	
-<!-- 	estas dos lineas van a ser añadidas siempre y cuando el idAd no sea 0, o sea el admin existe -->
+<!-- 	as long as the idAd = 0 these lines will be added-->
 			<c:if test="${admin.idAd ne 0}">
 				<sf:input path="idAd" type="hidden"/>
 				<sf:input path="fechaCreacion" type="hidden"/>
@@ -53,10 +50,10 @@
 	</sf:form>
 	
 	<br>
-	<c:out value="${resultado }"></c:out> 
+<%-- 	<c:out value="${resultado }"></c:out>  --%>
 	<br/><br/>
 	
-<!-- 	esto es para enlistar los admins -->
+<!-- 	list of admins -->
 	<c:forEach items="${admins}" var="admin">
 		<c:out value="${admin}"/>
 		<a href='<c:url value="/direccion/${admin.idAd}"/>'>DIRECCION</a>

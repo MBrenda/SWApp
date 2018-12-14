@@ -19,14 +19,18 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-
-	// quiero que este controlador se comunica con la vista que retorna para eso uso
-	// la interfaz Model en spring
+	
+	/*
+	private final AdminService adminService;
+	
+	public AdminController(AdminService adminService){
+		this.adminService = adminService;
+	}
+    */
+	// this method returns a view with a spring form
 	@RequestMapping("/admin")
 	public String showAdmin(Model model, @ModelAttribute("resultado") String resultado) {
 
-		// la primer clave admin el que indiqe en commandName en admin.jsp y el otro
-		// valor admin que estoy pasando es una nueva instancia vacia de mi pojo admin
 		Admin admin = new Admin();
 
 		model.addAttribute("admin", admin);
@@ -38,21 +42,19 @@ public class AdminController {
 		return "admin";
 	}
 
-	// va a obedecer a admin/save siempre y cuando sea una petision POST
-	// vamos a redirigir un administrador para no meter basura a la bd
+	// this method receive the spring form
+	// this method save the data from the spring form
 	@RequestMapping(value = "/admin/save", method = RequestMethod.POST)
 	public String HandleAdmin(@ModelAttribute("admin") Admin adminForm, Model model, RedirectAttributes ra) {
 
 		adminService.saveOrUpdate(adminForm);
-		// resultado es un parametro en el modelo que va a ser mostrado en el
-		// controlador /admin
 		ra.addFlashAttribute("resultado", "Cambios realizados con EXITO");
-		// en vez de retorna una vista logica voy a retornar una DIRECCION
+		
 		return "redirect:/admin";
 	}
 
+	//this method update an admin by id
 	@RequestMapping("/admin/{idAd}/update")
-	// para leer el idAd que es un parametro dinamico se usa la sgte anotacion
 	private String showUpdate(Model model, @PathVariable("idAd") int id) {
 
 		Admin admin = adminService.findById(id);
@@ -61,6 +63,7 @@ public class AdminController {
 		return "admin";
 	}
 
+	//this method delete an admin by id
 	@RequestMapping("/admin/{idAd}/delete")
 	private String delete(@PathVariable("idAd") int idAd, RedirectAttributes ra) {
 		

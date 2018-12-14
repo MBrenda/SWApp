@@ -11,6 +11,7 @@
 <body>
 	<h1>About.jsp</h1>
 	
+	
 	Atributos del model <c:out value="${mensaje}" /><br>
 	Atributos en Session <c:out value="${sessionScope.resultado}"></c:out>
 </body>

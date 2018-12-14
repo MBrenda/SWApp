@@ -3,7 +3,9 @@ package um.pojo;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,21 +17,19 @@ import javax.persistence.Table;
 public class Admin {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idAd;
 	private String nombre;
 	private String cargo;
 	private Timestamp fechaCreacion;
 
-	//va a tener todas las direcciones
-	@OneToMany(mappedBy = "admin")
+	@OneToMany(mappedBy = "admin", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Direccion> direcciones;
 
 	public Admin() {
-	
+
 	}
 
-	
 	public Admin(int idAd, String nombre, String cargo, Timestamp fechaCreacion) {
 		super();
 		this.idAd = idAd;
@@ -37,7 +37,6 @@ public class Admin {
 		this.cargo = cargo;
 		this.fechaCreacion = fechaCreacion;
 	}
-
 
 	public Admin(String nombre, String cargo, Timestamp fechaCreacion) {
 		this.nombre = nombre;
@@ -48,48 +47,47 @@ public class Admin {
 	public int getIdAd() {
 		return idAd;
 	}
-	
+
 	public void setIdAd(int idAd) {
 		this.idAd = idAd;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public String getCargo() {
 		return cargo;
 	}
-	
+
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	
+
 	public Timestamp getFechaCreacion() {
 		return fechaCreacion;
 	}
-	
+
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	
+
 	public Set<Direccion> getDirecciones() {
 		return direcciones;
 	}
 
-
 	public void setDirecciones(Set<Direccion> direcciones) {
 		this.direcciones = direcciones;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Administrador [idAd=" + idAd + ", nombre=" + nombre + ", cargo=" + cargo + ", fechaCreacion="
 				+ fechaCreacion + "]";
-	}	
-	
+	}
+
 }

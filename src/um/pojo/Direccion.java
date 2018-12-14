@@ -7,9 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table (name = "direccion")
+@Table(name = "direccion")
 public class Direccion {
 
 	@Id
@@ -17,14 +16,13 @@ public class Direccion {
 	private int idDir;
 	private String calle;
 	private String cp;
-	
-	 //es el dueño de tal direccion
+
 	@ManyToOne
-	@JoinColumn(name= "idAd")
+	@JoinColumn(name = "idAd")
 	private Admin admin;
-	
+
 	public Direccion() {
-	
+
 	}
 
 	public Direccion(String calle, String cp) {

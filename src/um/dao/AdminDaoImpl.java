@@ -20,7 +20,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	// me retorna la sesion hibernate, invoca al get
+	// returns a hibernate session
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -30,17 +30,17 @@ public class AdminDaoImpl implements AdminDao {
 		getSession().save(admin);
 	}
 
+	// this method query and returns a list of admins
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Admin> findAll() {
 
 		@SuppressWarnings("rawtypes")
-		Query query = getSession().createQuery("from Admin"); // MySQL --> select * from admin;
+		Query query = getSession().createQuery("from Admin"); // MySQL -> select * from admin;
 
 		return query.list();
 	}
 
-	//cuando seleccionas uno, te redirecciona a la pagina y te muestra ese id que seleccionaste te sale la consulta hecha en la terminal
 	@Override
 	public Admin findById(int id) {
 
@@ -53,9 +53,9 @@ public class AdminDaoImpl implements AdminDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Admin> findByNombre(String nombre) {
-		
+
 		Criteria crit = getSession().createCriteria(Admin.class);
-		crit.add(Restrictions.like("nombre", "%" +  nombre + "%"));
+		crit.add(Restrictions.like("nombre", "%" + nombre + "%"));
 
 		return crit.list();
 	}
@@ -66,11 +66,9 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void delete(Admin admin){
+	public void delete(Admin admin) {
 		getSession().delete(admin);
-		
-		//hibernate trabaja con instancias del objeto
-		//por eso le pasamos admin y no el id
+
 	}
 
 }
