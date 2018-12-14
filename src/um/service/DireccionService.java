@@ -19,10 +19,10 @@ public class DireccionService {
 	@Autowired
 	private DireccionDao direccionDao;
 
-	public void save(Admin admin, Direccion direccion) {	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+	// Set the administrator and save the address
+	public void save(Admin admin, Direccion direccion) {
 		direccion.setAdmin(admin);
 		direccionDao.save(direccion);
-		// seteo el administrador y salvo la direccion
 
 	}
 

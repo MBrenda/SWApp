@@ -19,15 +19,16 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
+
 	/*
-	private final AdminService adminService;
-	
-	public AdminController(AdminService adminService){
-		this.adminService = adminService;
-	}
-    */
-	// this method returns a view with a spring form
+	 * Esto es una nueva forma de inyectar un adminService sin la anotacion private
+	 * final AdminService adminService;
+	 * 
+	 * public AdminController(AdminService adminService){ this.adminService =
+	 * adminService; }
+	 */
+
+	// this method returns a spring form
 	@RequestMapping("/admin")
 	public String showAdmin(Model model, @ModelAttribute("resultado") String resultado) {
 
@@ -49,27 +50,27 @@ public class AdminController {
 
 		adminService.saveOrUpdate(adminForm);
 		ra.addFlashAttribute("resultado", "Cambios realizados con EXITO");
-		
+
 		return "redirect:/admin";
 	}
 
-	//this method update an admin by id
+	// this method update an admin by id
 	@RequestMapping("/admin/{idAd}/update")
 	private String showUpdate(Model model, @PathVariable("idAd") int id) {
 
 		Admin admin = adminService.findById(id);
 		model.addAttribute("admin", admin);
-		
+
 		return "admin";
 	}
 
-	//this method delete an admin by id
+	// this method delete an admin by id
 	@RequestMapping("/admin/{idAd}/delete")
 	private String delete(@PathVariable("idAd") int idAd, RedirectAttributes ra) {
-		
+
 		adminService.delete(idAd);
 		ra.addFlashAttribute("resultado", "Cambios realizados con EXITO");
-		
+
 		return "redirect:/admin";
 	}
 }

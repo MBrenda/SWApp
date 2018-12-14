@@ -1,6 +1,5 @@
 package um.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,30 +23,35 @@ public class DireccionController {
 
 	@Autowired
 	private DireccionService direccionService;
-	
+
+	/*
+	 * This method the admin corresponding to the idAd is found through the service
+	 * and its status is saved. A new instance of address is created to return to
+	 * the view. Result brings already loaded addresses. Bring a list of addresses
+	 * associated with the idAd
+	 */
 	@RequestMapping("/direccion/{idAd}")
-	private String getAll(Model model, @ModelAttribute("resultado") String resultado, @PathVariable("idAd") int idAd){
-		
+	private String getAll(Model model, @ModelAttribute("resultado") String resultado, @PathVariable("idAd") int idAd) {
+
 		Admin admin = adminService.findById(idAd);
 		model.addAttribute("admin", admin);
-		
+
 		model.addAttribute("direccion", new Direccion());
 		model.addAttribute("resultado", resultado);
 		model.addAttribute("direcciones", direccionService.findAll(idAd));
-		
+
 		return "direccion";
 	}
-	
-	//el direccion del model hace referencia al commanname del jsp y el otro a un identificador para este metodo
+
+	// this method saves one or more addresses in the admin that was obtained in the
+	// previous controller
 	@RequestMapping("/direccion/save")
-	public String save(Model model, RedirectAttributes ra,
-			@ModelAttribute("direccion") Direccion direccion,
+	public String save(Model model, RedirectAttributes ra, @ModelAttribute("direccion") Direccion direccion,
 			@ModelAttribute("admin") Admin admin) {
-		
+
 		direccionService.save(admin, direccion);
 		ra.addFlashAttribute("resultado", "Cambios realizados con éxito");
-		
-		
+
 		return "redirect:/direccion/" + admin.getIdAd();
 	}
 }

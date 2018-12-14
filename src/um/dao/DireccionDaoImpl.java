@@ -22,7 +22,6 @@ public class DireccionDaoImpl implements DireccionDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	// me retorna la sesion hibernate, invoca al get
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -43,5 +42,5 @@ public class DireccionDaoImpl implements DireccionDao{
 		
 		return crit.list();
 	}
-			//todo eso es como si escribiera select * from springbd.Direccion natural join Admin where Direccion.idAd = Admin.idAd and Admin.idAd = 1 
+	//select * from springbd.Direccion natural join Admin where Direccion.idAd = Admin.idAd and Admin.idAd = 1 
 }
