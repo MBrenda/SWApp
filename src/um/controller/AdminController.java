@@ -20,14 +20,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	/*
-	 * Esto es una nueva forma de inyectar un adminService sin la anotacion private
-	 * final AdminService adminService;
-	 * 
-	 * public AdminController(AdminService adminService){ this.adminService =
-	 * adminService; }
-	 */
-
 	// this method returns a spring form
 	@RequestMapping("/admin")
 	public String showAdmin(Model model, @ModelAttribute("resultado") String resultado) {
@@ -35,6 +27,7 @@ public class AdminController {
 		Admin admin = new Admin();
 
 		model.addAttribute("admin", admin);
+		
 		model.addAttribute("resultado", resultado);
 
 		List<Admin> admins = adminService.findAll();

@@ -9,12 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>Index</h1>
 		
 <!-- 	concatenate urls using jstl	tags -->
-		<a href='<c:url value="/admin" />'> Gestionar Administradores</a>
+		<br>
+		<center><h1><a href='<c:url value="/admin" />'> Gestionar Administradores</a></h1></center>
 		<br/>
-		<a href='<c:url value="/about" />'> Acerca de</a><br>
+<%-- 		<a href='<c:url value="/about" />'> Acerca de</a><br> --%>
 		
 		<br>
 		<c:out value="${adminForm}" /><br>

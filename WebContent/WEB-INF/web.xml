@@ -10,7 +10,8 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
- <!--   servlet configuration -->
+ <!--   servlet configuration --> 
+<!-- process the calls made to the application and determine which controller will take care of it -->
   <servlet>
     <description></description>
     <display-name>dispatcher</display-name>
@@ -22,11 +23,13 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   
-<!--  configuration files spring -->  
+<!-- root container -->
+<!-- Automatically configure the deployment time of the ApplicationContext -->
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-
+  
+<!--  configuration files spring -->  
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>

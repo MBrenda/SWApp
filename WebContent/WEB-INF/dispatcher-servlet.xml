@@ -16,7 +16,7 @@
 
 <!-- look for classes with @Controller -->
 	<context:component-scan base-package="um.controller"/>
-
+<!-- enable annotations -->
 	<mvc:annotation-driven/>
 <!-- configures a handler for serving static resources -->
 	<mvc:resources location="/resources/" mapping="/res/**"/>

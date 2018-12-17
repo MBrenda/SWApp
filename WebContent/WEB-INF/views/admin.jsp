@@ -50,9 +50,9 @@
 	</sf:form>
 	
 	<br>
-<%-- 	<c:out value="${resultado }"></c:out>  --%>
+<%--  	<c:out value="${resultado }"></c:out>   --%>
 	<br/><br/>
-	
+	<h2>Lista de administradores</h2>
 <!-- 	list of admins -->
 	<c:forEach items="${admins}" var="admin">
 		<c:out value="${admin}"/>

@@ -19,3 +19,6 @@ public interface AdminDao {
 	public void delete(Admin admin);
 
 }
+
+
+//It is a design pattern used to create a persistence layer

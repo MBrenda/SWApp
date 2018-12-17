@@ -34,6 +34,7 @@
 	<c:out value="${resultado}"></c:out> 
 	<br/><br/>
 	
+	<h2>Lista de direcciones</h2>
 <!-- 	Go through the address collection and print address -->
 	<c:forEach items="${direcciones}" var="direccion">
 		<c:out value="${direccion}"/>
